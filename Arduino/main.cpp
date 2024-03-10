@@ -70,5 +70,5 @@ void loop() {
   Serial.println();
 
   // Aguarda um tempo antes de fazer a próxima verificação
-  delay(1000);
+  delay(30000);
 }
