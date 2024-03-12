@@ -2,7 +2,8 @@
 
 // Definição dos pinos
 const int sensorPin = A0; // Pino de entrada do sensor de umidade
-const int valvulaPin = 7; // Pino de saída da válvula de irrigação
+const int valvulaPin = 7; // Pino de controle da válvula de irrigação
+const int relayPin = 8;    // Pino de controle do relé
 
 // Variáveis para armazenar os valores de umidade
 int umidadeAtual = 0;
@@ -28,12 +29,14 @@ bool verificarUmidade() {
 
 // Função para controlar a válvula de irrigação
 void controlarValvula(bool estado) {
-  digitalWrite(valvulaPin, estado ? HIGH : LOW);
+  digitalWrite(valvulaPin, estado ? HIGH : LOW); // Controla a válvula diretamente
+  digitalWrite(relayPin, estado ? HIGH : LOW);   // Controla o relé para ligar/desligar a válvula
 }
 
 void setup() {
   pinMode(sensorPin, INPUT);
   pinMode(valvulaPin, OUTPUT);
+  pinMode(relayPin, OUTPUT); // Configura o pino do relé como saída
 
   // Inicializa a comunicação serial para depuração
   Serial.begin(9600);
